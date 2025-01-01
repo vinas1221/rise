@@ -1,4 +1,4 @@
-export const generatePrettyColor = (hue: number) => {
+export var generatePrettyColor = (hue: number) => {
     return hslToRgb(hue, 100, 35);
 };
 
