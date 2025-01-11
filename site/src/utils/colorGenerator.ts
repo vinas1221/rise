@@ -7,7 +7,7 @@ function hslToRgb(h: number, s: number, l: number) {
     s /= 100;
     l /= 100;
 
-    const c = (1 - Math.abs(2 * l - 1)) * s,
+    let c = (1 - Math.abs(2 * l - 1)) * s,
         x = c * (1 - Math.abs(((h / 60) % 2) - 1)),
         m = l - c / 2,
         r = 0,
