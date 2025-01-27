@@ -2,7 +2,7 @@ import { onMounted, ref } from 'vue';
 import Blobity, { Options } from '../Blobity';
 
 export default (options: Partial<Options>) => {
-    let instance = ref<Blobity | null>(null)
+    const instance = ref<Blobity | null>(null)
 
     onMounted(() => {
         if (!instance.value) {
