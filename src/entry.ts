@@ -8,12 +8,12 @@
 import Blobity from './Blobity';
 module.exports = Blobity;
 
-let autoStart = document.querySelector(
+const autoStart = document.querySelector(
     'script[src^="https://cdn.blobity.gmrchk.com/by.js"]'
 ) as HTMLScriptElement;
 if (autoStart) {
-    let url = new URL(autoStart.src);
-    let params = url.searchParams;
+    const url = new URL(autoStart.src);
+    const params = url.searchParams;
 
     if (params.get('autoStart') !== null) {
         // @ts-ignore
