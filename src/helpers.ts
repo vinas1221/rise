@@ -1,15 +1,15 @@
 export type Color = { r: number; g: number; b: number }
 
-export const extractRgbFromHex = (hex: string) => {
-    const r = parseInt(hex.slice(1, 3), 16)
-    const g = parseInt(hex.slice(3, 5), 16)
-    const b = parseInt(hex.slice(5, 7), 16)
+export let extractRgbFromHex = (hex: string) => {
+    let r = parseInt(hex.slice(1, 3), 16)
+    let g = parseInt(hex.slice(3, 5), 16)
+    let b = parseInt(hex.slice(5, 7), 16)
 
     return { r, g, b }
 }
 
-export const extractRgbFromRgb = (rgb: string) => {
-    const match = /rgb\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/.exec(rgb)
+export let extractRgbFromRgb = (rgb: string) => {
+    let match = /rgb\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/.exec(rgb)
 
     if (match === null) {
         throw new Error(`Couldn't convert color string ${rgb}`)
@@ -22,7 +22,7 @@ export const extractRgbFromRgb = (rgb: string) => {
     }
 }
 
-export const convertColor = (color: string) => {
+export let convertColor = (color: string) => {
     if (color.includes('rgb')) {
         return extractRgbFromRgb(color)
     } else if (color.startsWith('#')) {
@@ -32,9 +32,9 @@ export const convertColor = (color: string) => {
     throw new Error(`Couldn't convert color string ${color}`)
 }
 
-export const isGradient = (color: Color | Color[]): color is Color[] => {
+export let isGradient = (color: Color | Color[]): color is Color[] => {
     return Array.isArray(color)
 }
 
-export const positive = (n: number) => Math.max(n, 0)
-export const negative = (n: number) => Math.min(n, 0)
+export let positive = (n: number) => Math.max(n, 0)
+export let negative = (n: number) => Math.min(n, 0)
