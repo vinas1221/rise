@@ -1,6 +1,6 @@
-let TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
-let baseConfig = {
+const baseConfig = {
     mode: 'production',
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
@@ -26,7 +26,7 @@ let baseConfig = {
     },
 };
 
-let config = Object.assign({}, baseConfig, {
+const config = Object.assign({}, baseConfig, {
     entry: {
         blobity: './src/entry.ts',
         'blobity.min': './src/entry.ts',
