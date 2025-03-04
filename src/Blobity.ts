@@ -178,8 +178,8 @@ export default class Blobity {
         this.updatePrefersReducedMotionSetting();
 
         this.stickedToElementMutationObserver = new MutationObserver(mutations => {
-            for (var mutation of mutations) {
-                for (var el of mutation.removedNodes) {
+            for (const mutation of mutations) {
+                for (const el of mutation.removedNodes) {
                     if (el === this.stickedToElement || el.contains(this.stickedToElement)) {
                         this.resetStickedToElement();
                         this.resetStickedToElementMutationObserver();
@@ -217,7 +217,7 @@ export default class Blobity {
             }
 
             if (!this.globalStyles) {
-                var dot = `<svg xmlns="http://www.w3.org/2000/svg" width="${this.options.dotSize}" height="${this.options.dotSize}"
+                const dot = `<svg xmlns="http://www.w3.org/2000/svg" width="${this.options.dotSize}" height="${this.options.dotSize}"
                 viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill-rule="evenodd" fill="${this.options.dotColor}"/></svg>`;
 
                 this.globalStyles = document.createElement('style');
@@ -363,7 +363,7 @@ export default class Blobity {
     };
 
     private enable = () => {
-        var disableAge = new Date().getTime() - this.disableTimeStamp;
+        const disableAge = new Date().getTime() - this.disableTimeStamp;
 
         if (disableAge > 16) {
             // let's take one cca frame as a limit
@@ -422,13 +422,13 @@ export default class Blobity {
 
     private focusableElementMouseEnter = (event: MouseEvent) => {
         if (this.isActive && event.target) {
-            var element = (event.target as HTMLElement).closest(
+            const element = (event.target as HTMLElement).closest(
                 this.options.focusableElements
             ) as HTMLElement;
 
             if (element) {
                 this.stickedToElement = element;
-                var tooltip = element.getAttribute('data-blobity-tooltip');
+                const tooltip = element.getAttribute('data-blobity-tooltip');
 
                 if (element && tooltip != undefined) {
                     this.sticketToElementTooltip = tooltip;
@@ -454,7 +454,7 @@ export default class Blobity {
                     subtree: true,
                 });
 
-                var magnetic = element.getAttribute('data-blobity-magnetic');
+                const magnetic = element.getAttribute('data-blobity-magnetic');
                 if (!this.reduceMotionSetting) {
                     if (
                         magnetic === 'true' ||
@@ -466,9 +466,9 @@ export default class Blobity {
                                 !this.activeTooltip &&
                                 this.activeFocusedElement === element
                             ) {
-                                var { width, height, x, y } =
+                                const { width, height, x, y } =
                                     element.getBoundingClientRect();
-                                var radius = element.getAttribute(
+                                const radius = element.getAttribute(
                                     'data-blobity-radius'
                                 );
 
@@ -498,7 +498,7 @@ export default class Blobity {
 
     private focusableElementMouseLeave = (event: MouseEvent) => {
         if (event.target) {
-            var element = (event.target as HTMLElement).closest(
+            const element = (event.target as HTMLElement).closest(
                 this.options.focusableElements
             ) as HTMLElement;
 
@@ -541,8 +541,8 @@ export default class Blobity {
     }
 
     private highlightElement = (element: HTMLElement) => {
-        var { width, height, x, y } = element.getBoundingClientRect();
-        var radius = element.getAttribute('data-blobity-radius');
+        const { width, height, x, y } = element.getBoundingClientRect();
+        const radius = element.getAttribute('data-blobity-radius');
         this.kinetInstance[this.kinetDefaultMethod]('textOpacity', 0);
         this.morph(
             {
@@ -559,8 +559,8 @@ export default class Blobity {
         this.ctx.font = `${this.options.fontWeight} ${this.options.fontSize}px ${this.options.font}`;
         this.ctx.textBaseline = 'bottom';
         this.ctx.textAlign = 'left';
-        var { actualBoundingBoxAscent, width } = this.ctx.measureText(text);
-        var padding = this.options.tooltipPadding * 2;
+        const { actualBoundingBoxAscent, width } = this.ctx.measureText(text);
+        const padding = this.options.tooltipPadding * 2;
 
         this.kinetInstance[this.kinetDefaultMethod]('textOpacity', 100);
         this.morph(
@@ -688,7 +688,7 @@ export default class Blobity {
     ) {
         this.clear();
 
-        var maxDelta = this.activeFocusedElement
+        const maxDelta = this.activeFocusedElement
             ? 0
             : (this.options.size / 8) * 7;
 
@@ -705,7 +705,7 @@ export default class Blobity {
         velocityY = velocityY * window.devicePixelRatio;
 
         if (this.isActive) {
-            var ctx = this.ctx;
+            const ctx = this.ctx;
             ctx.globalAlpha = opacity;
 
             ctx.setTransform(scale / 100, 0, 0, scale / 100, x, y);
@@ -714,7 +714,7 @@ export default class Blobity {
             ctx.scale(scale / 100, scale / 100);
             ctx.translate(-width, -height);
 
-            var activateBlur = this.options.kineticMorphing &&
+            const activateBlur = this.options.kineticMorphing &&
                 Math.abs(width - this.options.size * window.devicePixelRatio) <
                     2 &&
                 Math.abs(height - this.options.size * window.devicePixelRatio) <
@@ -724,7 +724,7 @@ export default class Blobity {
                 ) < 2;
 
             if (activateBlur) {
-                var angle =
+                const angle =
                     (Math.atan2(velocityY, velocityX) * 180) / Math.PI + 180;
 
                 ctx.translate(radius, radius);
@@ -732,7 +732,7 @@ export default class Blobity {
                 ctx.translate(-radius, -radius);
             }
 
-            var cumulativeVelocity = activateBlur
+            const cumulativeVelocity = activateBlur
                 ? Math.min(
                       Math.sqrt(
                           Math.pow(Math.abs(velocityX), 2) +
@@ -763,9 +763,9 @@ export default class Blobity {
             ctx.closePath();
 
             if (isGradient(this.color!)) {
-                var gradient = ctx.createLinearGradient(0, 0, width, height);
+                const gradient = ctx.createLinearGradient(0, 0, width, height);
 
-                var length = this.color.length;
+                const length = this.color.length;
                 this.color.forEach((color, index) => {
                     gradient.addColorStop(
                         (1 / (length - 1)) * index,
