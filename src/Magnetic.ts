@@ -85,8 +85,8 @@ export default class Magnetic {
             Math.abs(x) < this.maxDistanceX &&
             Math.abs(y) < this.maxDistanceY
         ) {
-            const percentX = x / this.maxDistanceX;
-            const percentY = y / this.maxDistanceY;
+            var percentX = x / this.maxDistanceX;
+            var percentY = y / this.maxDistanceY;
 
             this.kinetInstance.animate('x', Math.round(20 * percentX));
             this.kinetInstance.animate('y', Math.round(20 * percentY));
