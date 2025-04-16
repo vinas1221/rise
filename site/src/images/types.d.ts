@@ -1,5 +1,5 @@
 declare module '*.svg' {
-    const content: any;
+    let content: any;
     export default content;
 }
 declare module '*.png';
